@@ -10,9 +10,10 @@ const Home = (props) => {
     const [busqueda, setBusqueda] = React.useState('');
     const [yearBusqueda, setYearBusqueda] = React.useState('');
     const [dataList, setDataList] = React.useState([]);
+    const [numPage, setNumePage] = React.useState('');
 
     const listar = async () => {
-        const res = await getBusqueda(busqueda, yearBusqueda);
+        const res = await getBusqueda(busqueda, yearBusqueda, numPage);
         // console.log("datos de apis");
         // console.log(res);
         setDataList(res);
@@ -30,7 +31,6 @@ const Home = (props) => {
     return (
         <View>
             <View >
-                <Text h1>Inicio </Text>
                 <Input placeholder="Buscar Pelicula" onChangeText={(text) => setBusqueda(text)} />
                 <Input placeholder="Año" onChangeText={(text) => setYearBusqueda(text)} />
 

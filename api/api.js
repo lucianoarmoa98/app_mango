@@ -2,10 +2,10 @@ import axios from "axios";
 
 const API_KEY = "&apikey=66818d24";
 
-export const getBusqueda = (busqueda, yearBusqueda) => {
+export const getBusqueda = (busqueda, yearBusqueda, numPage) => {
     return new Promise((resolve, reject) => {
         axios({
-            url: `http://www.omdbapi.com/?s=${busqueda}&y=${yearBusqueda}` + API_KEY,
+            url: `http://www.omdbapi.com/?s=${busqueda}&y=${yearBusqueda}&page${numPage}` + API_KEY,
             method: 'Get',
             headers: {
                 'Content-Type': 'application/json'
