@@ -36,8 +36,8 @@ const Lista = ({ data }) => {
     const loadMoreItem = () => {
         setCurrentPage(currentPage + 1);
 
-        console.log("datas...")
-        console.log(currentPage)
+        console.log("datas...");
+        console.log(currentPage);
     };
 
     
