@@ -8,30 +8,29 @@ import { stylesContainer } from '../styles/styles';
 const Detalles = ({ route }) => {
     const [details, setDetails] = React.useState([]);
 
+    // -------------------------------datos que envia la ruta por params
     const { imdbID } = route.params.item;
     let dataRating = details.data ? details.data.Ratings : [];
 
-    // console.log("rentin")
-    // console.log(dataRating)
 
+    //-------------------------------funcion que obtiene los detalles de la pelicula
     const infoMovie = async () => {
         const res = await getDetalles(imdbID);
-        // console.log("datos de apis");
-        // console.log(res);
         setDetails(res);
     }
 
+    //-------------------------------useEffect que ejecuta la funcion infoMovie
     useEffect(() => {
         infoMovie();
     }, []);
 
-    console.log("informacion...")
-    console.log(details.data);
+    
 
     return (
         <View>
-            
+
             <Card>
+                {/*------------------------- Vista de Imagen con titulo -------------------------*/}
                 <View style={stylesContainer.container} >
                     <Image
                         source={{ uri: details.data ? details.data.Poster : 'https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-6.png' }}
@@ -40,7 +39,6 @@ const Detalles = ({ route }) => {
 
                 </View>
                 <Card.Title>{details.data ? details.data.Title : ''}</Card.Title>
-
 
                 {
                     dataRating ? dataRating.map((row) => (
@@ -52,6 +50,7 @@ const Detalles = ({ route }) => {
                         : ''
                 }
 
+                {/* ------------------------texto de detalles------------------------------- */}
                 <Text style={stylesContainer.titleText}>Descripción:</Text>
                 <Text>{details.data ? details.data.Plot : ''}</Text>
                 <Text style={stylesContainer.titleText}>Director:</Text>

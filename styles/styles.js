@@ -3,11 +3,12 @@ import { StyleSheet } from "react-native";
 export const stylesContainer = StyleSheet.create({
     container: {
         alignItems: 'center',
-        flex: 1
+        //flex: 1
     },
-    text: {
-        color: '#FFF',
-        fontSize: 80
+    textBusqueda: {
+        fontSize: 10,
+        fontWeight: "bold",
+        marginLeft: 10
     },
     imgContainer: {
         height: 180,

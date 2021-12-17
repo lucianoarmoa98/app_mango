@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
-import { Card, Image } from 'react-native-elements';
+import { Button, Card, Image } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/core';
 import { stylesContainer } from '../styles/styles';
 
 
-const Lista = ({ data }) => {
+const Lista = ({ data, childToParent, getLista }) => {
     const [currentPage, setCurrentPage] = React.useState(1);
 
     let resultado = data.data ? data.data.Search : [];
     let busquedaTotal = data.data ? data.data.totalResults : 'No hay resultados';
+
 
     const navigation = useNavigation();
 
@@ -23,31 +24,32 @@ const Lista = ({ data }) => {
                         style={stylesContainer.imgContainer}
                     />
                 </View>
-
-                {/* <Text>{item.Title}</Text> */}
                 <Card.Title>{item.Title} ({item.Year})</Card.Title>
             </Card>
         </TouchableOpacity>
     );
-    
-    
-    
+
+
+    //------------------------------------------------recargar la pagina
     const loadPage = () => {
         setCurrentPage(currentPage + 1);
-        console.log('loadPage......');
-        console.log(currentPage)
+        childToParent(currentPage);
+        getLista();
     };
 
+    //------------------------------------------------- actualizar la lista
+    useEffect(() => {
+        getLista();
+    }, []);
 
 
 
     return (
-        <View style={{flex: 1}}>
-            <Text style={stylesContainer.titleText}>Resultado de busqueda: {busquedaTotal}</Text>
+        //----------------------- colocar en el view, el estilo flex: 1, para usar flatlist y poder usar el scroll
+        <View style={{ flex: 1 }}>
+            <Text style={stylesContainer.textBusqueda}>Resultado de busqueda: {busquedaTotal}</Text>
             <FlatList
                 data={resultado}
-                //tyle={{marginTop: 35}}
-                //contentContainerStyle={{marginHorizontal: 20}}
                 renderItem={renderResultado}
                 keyExtractor={(item) => String(item.imdbID)}
                 onEndReached={loadPage}
