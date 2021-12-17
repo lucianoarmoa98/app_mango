@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "app_mango",
+    "name": "app_mango_apk",
     "slug": "app_mango",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -23,7 +23,9 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.app.mango",
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/favicon.png"
