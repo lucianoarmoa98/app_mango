@@ -9,7 +9,7 @@ const Lista = ({ data }) => {
     const [currentPage, setCurrentPage] = React.useState(1);
 
     let resultado = data.data ? data.data.Search : [];
-    let busquedaTotal = data.data? data.data.totalResults : 'No hay resultados';
+    let busquedaTotal = data.data ? data.data.totalResults : 'No hay resultados';
 
     const navigation = useNavigation();
 
@@ -29,36 +29,32 @@ const Lista = ({ data }) => {
             </Card>
         </TouchableOpacity>
     );
-
     
-
-
-    const loadMoreItem = () => {
+    
+    
+    const loadPage = () => {
         setCurrentPage(currentPage + 1);
-
-        console.log("datas...");
-        console.log(currentPage);
+        console.log('loadPage......');
+        console.log(currentPage)
     };
 
-    
 
-    useEffect(() => {
-        loadMoreItem();
-    }, []);
 
 
     return (
-        <View>
-        <Text style={stylesContainer.titleText}>Resultado de busqueda: { busquedaTotal}</Text> 
+        <View style={{flex: 1}}>
+            <Text style={stylesContainer.titleText}>Resultado de busqueda: {busquedaTotal}</Text>
             <FlatList
-            data={resultado}
-            renderItem={renderResultado}
-            keyExtractor={(item) => item.imdbID}
-            onEndReached={loadMoreItem}
-            onEndReachedThreshold={0.5}
-        />
+                data={resultado}
+                //tyle={{marginTop: 35}}
+                //contentContainerStyle={{marginHorizontal: 20}}
+                renderItem={renderResultado}
+                keyExtractor={(item) => String(item.imdbID)}
+                onEndReached={loadPage}
+                onEndReachedThreshold={0.5}
+            />
         </View>
-        
+
     )
 }
 

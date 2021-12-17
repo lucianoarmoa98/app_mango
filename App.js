@@ -8,6 +8,7 @@ import Detalles from './components/Detalles';
 
 
 const Stack = createNativeStackNavigator();
+
 export default function App() {
   return (
     <NavigationContainer>

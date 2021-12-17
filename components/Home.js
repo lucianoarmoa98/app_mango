@@ -6,7 +6,7 @@ import { getBusqueda } from '../api/api';
 import Lista from './Lista';
 
 
-const Home = (props) => {
+const Home = () => {
     const [busqueda, setBusqueda] = React.useState('');
     const [yearBusqueda, setYearBusqueda] = React.useState('');
     const [dataList, setDataList] = React.useState([]);
@@ -29,14 +29,14 @@ const Home = (props) => {
     }, []);
 
     return (
-        <View>
-            <View >
+        <View style={{flex: 1}}>
+            <View style={{flex: 1}}>
                 <Input placeholder="Buscar Pelicula" onChangeText={(text) => setBusqueda(text)} />
                 <Input placeholder="Año" onChangeText={(text) => setYearBusqueda(text)} />
 
                 <Button title="Buscar" onPress={listar} />
 
-                <Lista data={dataList}/>
+                <Lista data={dataList} busqueda={busqueda} year={yearBusqueda} numPage={numPage}/>
             </View>
 
         </View>
